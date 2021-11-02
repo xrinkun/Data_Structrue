@@ -44,11 +44,15 @@ Status insertNode(SingleLinkedList *list, int index, Data data) {
         data,
         NULL
     };
+    if (index == 0) {
+        list->node = &node;
+        list->length++;
+        return OK;
+    }
     Node *curNode = list->node;
-    Node *pNode = NULL;
-    for (int i=0; i<index; i++) {
-        Node *pNode = curNode;
-        curNode = curNode->next;
+    Node *pNode = curNode;
+    for (int i=1; i<index; i++) {
+        pNode = curNode->next;
     }
     if (pNode) pNode->next = &node;
     Node *nextNode = index > list->length-1 ? NULL : curNode;

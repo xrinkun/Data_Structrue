@@ -46,27 +46,29 @@ Status insertDataByIndex(cList list, Data data, int index) {
     Node *tempNode = (Node *)malloc(sizeof(Node));
     tempNode->data = data;
     tempNode->next = curNode;
+    list = tempNode;
     Node *tailNode = curNode;
     while (1) {
-        if (tailNode->next == list) {
+        if (tailNode->next == curNode || !tailNode->next) {
             break;
         } else {
             tailNode = tailNode->next;
+            printf("taildNode addr: %p\n", tailNode);
         }
     }
-    tailNode->next = tempNode;
+    tailNode->next = list;
     return OK;
 }
 
 Status printList(cList list) {
-    Node *curNode = list->next;
+    Node *curNode = list;
     if (list == list->next) {
         printf("list is empty");
         return OK;
-    }
-    while (curNode != list) {
+    } do {
         printf("data: %d\n", curNode->data);
         curNode = curNode->next;
     }
+    while (curNode != list);
     return OK;
 }

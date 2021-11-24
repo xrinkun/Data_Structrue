@@ -2,4 +2,4 @@
 ## for C programing training
 
 #### TODO
-1. circular list
+1. String
